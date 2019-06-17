@@ -11,7 +11,7 @@ public class AppTest extends TestCase {
 
     @Test
     public void testCarInBound() {
-        Park park = new Park(4, 5);  //set park area:rectangle 4X4
+        Park park = new Park(4, 5);  //set park area:rectangle 4X5
         DriverLessCar car = new DriverLessCar(1, 1, Direction.NORTH, park);
         boolean exception = false;
 
