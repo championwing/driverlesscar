@@ -27,7 +27,7 @@ public class AppTest extends TestCase {
 
         assertTrue( car.getPositionX() == 1 );
         assertTrue( car.getPositionY() == 1 );
-        assertEquals(car.getOrientation(), Orientation.EAST);
+        assertEquals( Orientation.EAST, car.getOrientation());
     }
 
     /*
@@ -48,7 +48,7 @@ public class AppTest extends TestCase {
 
         assertTrue( car.getPositionX() == 1 );
         assertTrue( car.getPositionY() == 2 );
-        assertEquals(car.getOrientation(), Orientation.NORTH);
+        assertEquals(Orientation.NORTH, car.getOrientation());
     }
 
     /*
@@ -69,7 +69,7 @@ public class AppTest extends TestCase {
 
         assertTrue( car.getPositionX() == 2 );
         assertTrue( car.getPositionY() == 1 );
-        assertEquals(car.getOrientation(), Orientation.EAST);
+        assertEquals(Orientation.EAST, car.getOrientation());
     }
 
     /*
@@ -91,7 +91,7 @@ public class AppTest extends TestCase {
 
         assertTrue( car.getPositionX() == 1 );
         assertTrue( car.getPositionY() == 1 );
-        assertEquals(car.getOrientation(), Orientation.WEST);
+        assertEquals(Orientation.WEST, car.getOrientation());
     }
 
     /*
@@ -113,7 +113,7 @@ public class AppTest extends TestCase {
 
         assertTrue( car.getPositionX() == 3 );
         assertTrue( car.getPositionY() == 1 );
-        assertEquals(car.getOrientation(), Orientation.EAST);
+        assertEquals(Orientation.EAST, car.getOrientation());
     }
 
     /*
@@ -141,7 +141,7 @@ public class AppTest extends TestCase {
 
         assertTrue( car.getPositionX() == 3 );
         assertTrue( car.getPositionY() == 2 );
-        assertEquals(car.getOrientation(), Orientation.SOUTH);
+        assertEquals(Orientation.SOUTH, car.getOrientation());
     }
 
     /*
