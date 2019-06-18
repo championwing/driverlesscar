@@ -4,8 +4,8 @@ package com.womusic;
  * @author wuyongtao
  *
  * driverless car function:
- * 1.moving forward into different directions
- * 2.turning clockwise in a car park
+ * 1.moving forward and backword into different directions
+ * 2.turning clockwise in a car park(Turn90Right), and turning anti-clockwise(Turn90Left) also
  * 3.remenber its position
  * 4.remenber its orientation
  */

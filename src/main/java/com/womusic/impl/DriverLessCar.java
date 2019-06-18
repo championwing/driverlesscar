@@ -7,46 +7,36 @@ import com.womusic.*;
  */
 public class DriverLessCar implements ICar {
 
-    private int x ;
-    private int y ;
-    private String orientation ;
+    private Position pos;
+    private Orientation ori ;
     private IArea area ;
+    public static final String VERSION = "1.0"; // car version 1.0, can be extended
 
     public DriverLessCar(int x, int y, String orientation, IArea area){
-        this.x = x ;
-        this.y = y ;
-        this.orientation = orientation ;
+        pos = new Position(x, y) ;
+        ori = new Orientation(orientation) ;
         this.area = area;
     }
 
     @Override
     public void doCommand(String cmd) throws Exception{
-        String ori = orientation ;
-        //move
+
+        //move command
         if (cmd.equals(Command.FORWARD) || cmd.equals(Command.BACKWARD)) {
-            int destX = x ;
-            int destY = y ;
-            int offset = cmd.equals(Command.FORWARD)? 1:-1;
+            Position posBak = new Position(pos);
+            pos.move(ori, cmd.equals(Command.FORWARD));
 
-            switch (ori) {
-                case Direction.NORTH: destY += offset; break;
-                case Direction.SOUTH: destY -= offset; break;
-                case Direction.EAST:  destX += offset; break;
-                case Direction.WEST:  destX -= offset; break;
+            if( !area.isInArea(pos) ) {
+                pos = posBak; //restore the pos
+                throw new CarOutOfBoundException( String.format("Out of Bound: Car Status:%s with Command:%s}", this.toString(), cmd)  ) ;
             }
-
-            if( !area.isInArea(destX , destY) ) {
-                throw new CarOutOfBoundException( String.format("Out of Bound:CarStatus:%s with command:%s}", this.toString(), cmd)  ) ;
-            }
-            x = destX;
-            y = destY;
         } else if (cmd.equals(Command.TURN90LEFT) || cmd.equals(Command.TURN90RIGHT)) {  //rotation
-            orientation = Direction.get90Rotation(ori, cmd.equals(Command.TURN90RIGHT));
+            ori.doRotation90(cmd.equals(Command.TURN90RIGHT));
         }
     }
 
     @Override
-    public String version() { return Command.VERSION; }
+    public String version() { return VERSION; }
 
     @Override
     public String supportedCommands() {
@@ -54,35 +44,16 @@ public class DriverLessCar implements ICar {
     }
 
     @Override
-    public int getPositionX() {
-        return x ;
-    }
+    public int getPositionX() { return pos.getX(); }
 
     @Override
-    public int getPositionY() {
-        return y ;
-    }
+    public int getPositionY() { return pos.getY(); }
 
     @Override
-    public String getOrientation() {
-        return orientation ;
-    }
-
-    public void setPositionX(int x) {
-        this.x = x;
-    }
-    public void setPositionY(int y) {
-        this.y = y;
-    }
-    public void setOrientation(String orientation) {
-        this.orientation = orientation;
-    }
-    public void setArea(IArea area) {
-        this.area = area;
-    }
+    public String getOrientation() { return ori.getOrientation(); }
 
     @Override
     public String toString() {
-        return String.format("{x: %d, y: %d, orientation: %s}" , x, y, orientation) ;
+        return String.format("{%s, %s}" , pos, ori) ;
     }
 }

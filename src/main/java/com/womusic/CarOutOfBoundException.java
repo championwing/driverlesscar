@@ -1,7 +1,7 @@
 package com.womusic;
 
 /**
- * @author wuyongtao
+ * Car out of bound exception
  */
 public class CarOutOfBoundException extends Exception{
     public CarOutOfBoundException(String msg) {

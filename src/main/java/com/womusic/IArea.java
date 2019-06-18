@@ -5,5 +5,5 @@ package com.womusic;
  * the area could be rectangle, triangle, or any other irregular polygon
  */
 public interface IArea {
-    boolean isInArea(int x, int y);
+    boolean isInArea(Position pos);
 }
